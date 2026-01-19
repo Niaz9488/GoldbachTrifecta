@@ -1,84 +1,98 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10 Trading Models - Premium & Discount</title>
+    <title>Goldbach Master Edition (14 Models)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+        body { margin: 0; padding: 0; background-color: #0f172a; font-family: 'Inter', sans-serif; }
+        
+        /* Smooth animations for chart elements */
+        circle, line { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* Card Hover Effects */
+        .model-btn { transition: all 0.2s ease; }
+        .model-btn:hover { transform: translateY(-2px); }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
     </style>
 </head>
-<body class="bg-gray-900">
-    <div class="w-full min-h-screen p-4">
-        <div class="max-w-7xl mx-auto bg-white rounded-xl p-6">
-            <h1 class="text-4xl font-bold text-center mb-2 text-blue-900">
-                10 TRADING MODELS - PREMIUM & DISCOUNT
-            </h1>
-            <p class="text-center text-gray-600 mb-6">
-                Smart Money Concepts - Institutional Trading System
-            </p>
-
-            <!-- Model Selector -->
-            <div id="modelSelector" class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6"></div>
-
-            <!-- Main Chart -->
-            <div id="chartContainer" class="rounded-xl p-6 mb-6 border-4"></div>
-
-            <!-- Setup Instructions -->
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-blue-50 border-2 border-blue-600 rounded-xl p-6">
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">📋 SETUP STEPS</h3>
-                    <ol id="setupSteps" class="space-y-2"></ol>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="bg-yellow-50 border-2 border-yellow-600 rounded-lg p-4">
-                        <h4 class="font-bold text-yellow-900 mb-2">💡 DESCRIPTION</h4>
-                        <p id="description" class="text-sm text-yellow-900"></p>
-                    </div>
-
-                    <div class="bg-purple-50 border-2 border-purple-600 rounded-lg p-4">
-                        <h4 class="font-bold text-purple-900 mb-2">🎯 KEY CONCEPTS</h4>
-                        <div class="text-xs text-purple-900 space-y-1">
-                            <p><strong>MSS:</strong> Market Structure Shift</p>
-                            <p><strong>OB:</strong> Order Block (institutional zones)</p>
-                            <p><strong>FVG:</strong> Fair Value Gap (imbalance)</p>
-                            <p><strong>BR:</strong> Breaker Block (failed S/R)</p>
-                            <p><strong>MB:</strong> Mitigation Block (rebalance)</p>
-                            <p><strong>BSL/SSL:</strong> Buy/Sell Side Liquidity</p>
-                        </div>
-                    </div>
-                </div>
+<body class="text-slate-800">
+    <div class="w-full min-h-screen p-4 md:p-8">
+        <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+            
+            <div class="bg-slate-900 text-white p-6 text-center border-b-4 border-blue-500">
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
+                    GOLDBACH MASTER EDITION
+                </h1>
+                <p class="text-slate-400 font-medium text-sm md:text-base">
+                    14 Institutional Trading Models • Premium & Discount Analysis
+                </p>
             </div>
 
-            <!-- Legend -->
-            <div class="mt-6 bg-gray-50 border-2 border-gray-300 rounded-lg p-4">
-                <h4 class="font-bold text-gray-900 mb-3 text-center">ZONE LEGEND</h4>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-green-500 border-2 border-green-700"></div>
-                        <span>Premium/Discount (Sell/Buy)</span>
+            <div class="p-6">
+                <div class="mb-8">
+                    <div class="mb-4">
+                        <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-slate-400"></span> Standard Models (1-10)
+                        </h3>
+                        <div id="standardSelector" class="grid grid-cols-2 md:grid-cols-5 gap-3"></div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-blue-500 border-2 border-blue-700"></div>
-                        <span>Flow Gates (71% & 29%)</span>
+
+                    <div>
+                        <h3 class="text-xs font-black text-orange-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> Advanced Concepts (11-14)
+                        </h3>
+                        <div id="advancedSelector" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-red-500 border-2 border-red-700"></div>
-                        <span>Rebalance Zone</span>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-2">
+                        <div id="chartContainer" class="rounded-2xl p-6 border-4 relative shadow-inner bg-white min-h-[600px] transition-colors duration-300">
+                            </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-yellow-500 border-2 border-yellow-700"></div>
-                        <span>Equilibrium (50%)</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-gray-400 border-2 border-gray-600"></div>
-                        <span>Reference Levels</span>
+
+                    <div class="space-y-6">
+                        
+                        <div id="modelHeader" class="text-center p-4 rounded-xl border-2 bg-slate-50 border-slate-200">
+                            <h2 id="modelTitle" class="text-2xl font-black text-slate-800 uppercase leading-none mb-1">--</h2>
+                            <div id="modelSubtitle" class="text-xs font-bold uppercase tracking-wider">--</div>
+                        </div>
+
+                        <div id="statsCard" class="bg-slate-800 text-white rounded-xl p-4 shadow-lg border-l-4 border-blue-500">
+                            <div class="grid grid-cols-3 gap-3 text-center">
+                                <div class="bg-slate-700/50 rounded-lg p-2">
+                                    <div class="text-[10px] text-slate-400 font-bold uppercase">Win Rate</div>
+                                    <div id="statWin" class="font-bold text-green-400 text-lg">--</div>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-2">
+                                    <div class="text-[10px] text-slate-400 font-bold uppercase">Reward</div>
+                                    <div id="statReward" class="font-bold text-yellow-400 text-lg">--</div>
+                                </div>
+                                <div class="bg-slate-700/50 rounded-lg p-2">
+                                    <div class="text-[10px] text-slate-400 font-bold uppercase">Risk</div>
+                                    <div id="statRisk" class="font-bold text-red-400 text-lg">--</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-2 border-slate-100 rounded-xl p-5 shadow-sm">
+                            <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide border-b pb-2">
+                                <span>⚡</span> Execution Plan
+                            </h3>
+                            <ol id="setupSteps" class="space-y-3"></ol>
+                        </div>
+
+                        <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-5">
+                            <p id="description" class="text-sm text-amber-900 font-medium leading-relaxed"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,305 +102,131 @@
     <script>
         let activeModel = 1;
 
+        // --- 1. LEVELS CONFIGURATION ---
         const levels = [
-            { pct: 100, label: '100% HIGH', color: 'green', zone: 'premium' },
-            { pct: 97, label: '97%', color: 'green', zone: 'premium' },
-            { pct: 89, label: '89%', color: 'green', zone: 'premium' },
-            { pct: 83, label: '83%', color: 'green', zone: 'premium' },
-            { pct: 71, label: '71%', color: 'blue', zone: 'flow' },
-            { pct: 59, label: '59%', color: 'red', zone: 'rebalance' },
-            { pct: 53, label: '53%', color: 'red', zone: 'rebalance' },
-            { pct: 50, label: '50% EQ', color: 'yellow', zone: 'equilibrium' },
-            { pct: 47, label: '47%', color: 'red', zone: 'rebalance' },
-            { pct: 41, label: '41%', color: 'red', zone: 'rebalance' },
-            { pct: 29, label: '29%', color: 'blue', zone: 'flow' },
-            { pct: 17, label: '17%', color: 'green', zone: 'discount' },
-            { pct: 11, label: '11%', color: 'green', zone: 'discount' },
-            { pct: 3, label: '3%', color: 'green', zone: 'discount' },
-            { pct: 0, label: '0% LOW', color: 'green', zone: 'discount' },
+            { pct: 100, label: '1.00 HIGH', color: 'black', thick: true },
+            { pct: 97, label: '0.97', color: 'green', thick: false },
+            { pct: 89, label: '0.89', color: 'green', thick: false },
+            { pct: 83, label: '0.83 GIP', color: 'orange', thick: true },
+            { pct: 71, label: '0.71 FLOW', color: 'blue', thick: true },
+            { pct: 59, label: '0.59', color: 'red', thick: false },
+            { pct: 53, label: '0.53 REB', color: 'red', thick: true },
+            { pct: 50, label: '0.50 EQ', color: 'red', thick: true },
+            { pct: 47, label: '0.47 REB', color: 'red', thick: true },
+            { pct: 41, label: '0.41', color: 'red', thick: false },
+            { pct: 29, label: '0.29 FLOW', color: 'blue', thick: true },
+            { pct: 17, label: '0.17 GIP', color: 'orange', thick: true },
+            { pct: 11, label: '0.11', color: 'green', thick: false },
+            { pct: 3, label: '0.03', color: 'green', thick: false },
+            { pct: 0, label: '0.00 LOW', color: 'black', thick: true },
         ];
 
+        // --- 2. MODELS DATABASE ---
         const models = {
-            1: {
-                name: 'OB Premium Sell',
-                zone: 'Premium',
-                direction: 'SELL',
-                color: 'red',
-                bgColor: 'bg-red-50',
-                borderColor: 'border-red-600',
-                levels: '97-89-59',
-                steps: [
-                    '1. Price creates OB between 97-89',
-                    '2. Short Term Low Raided + MSS',
-                    '3. Retrace into the OB + Entry',
-                    '4. SL above swing high, Target 59-50'
-                ],
-                path: [
-                    { x: 10, y: 95 }, { x: 20, y: 97 }, { x: 30, y: 92 }, { x: 40, y: 93 },
-                    { x: 50, y: 89 }, { x: 60, y: 75 }, { x: 70, y: 65 }, { x: 80, y: 59 }
-                ],
-                entryIdx: 4,
-                targetIdx: [6, 7],
-                description: 'Order Block selling from premium. Wait for low raid and MSS, then enter on retrace to OB.'
-            },
-            2: {
-                name: 'Stoprun Premium Sell',
-                zone: 'Premium',
-                direction: 'SELL',
-                color: 'red',
-                bgColor: 'bg-red-50',
-                borderColor: 'border-red-600',
-                levels: '1.11-100-71-59',
-                steps: [
-                    '1. Price creates OB between 0.03-97',
-                    '2. Stoprun above the high (breaches 100)',
-                    '3. Run through 100 level + MSS',
-                    '4. Retrace into 100 level + Entry',
-                    '5. SL above stoprun high, Target 59-50'
-                ],
-                path: [
-                    { x: 10, y: 97 }, { x: 20, y: 98 }, { x: 25, y: 102 }, { x: 30, y: 100 },
-                    { x: 40, y: 95 }, { x: 50, y: 85 }, { x: 60, y: 71 }, { x: 70, y: 62 }, { x: 80, y: 59 }
-                ],
-                entryIdx: 3,
-                targetIdx: [6, 8],
-                description: 'Liquidity grab above 100. Enter when price returns after the spike and breaks structure.'
-            },
-            3: {
-                name: 'FVG Premium Sell',
-                zone: 'Premium',
-                direction: 'SELL',
-                color: 'red',
-                bgColor: 'bg-red-50',
-                borderColor: 'border-red-600',
-                levels: '100-89-83-59-50',
-                steps: [
-                    '1. Price creates OB into FVG (89-97)',
-                    '2. Retrace to FVG + MSS + Prop Block',
-                    '3. Retrace to FV, breakout of Prop Block',
-                    '4. Entry on STOP, SL above swing high',
-                    '5. Target 59-50'
-                ],
-                path: [
-                    { x: 10, y: 95 }, { x: 20, y: 89 }, { x: 30, y: 83 }, { x: 40, y: 86 },
-                    { x: 50, y: 83 }, { x: 60, y: 75 }, { x: 70, y: 65 }, { x: 80, y: 59 }
-                ],
-                entryIdx: 5,
-                targetIdx: [7],
-                description: 'Fair Value Gap at premium. Wait for retrace to fill gap, consolidation, then break lower.'
-            },
-            4: {
-                name: 'BR Premium Buy',
-                zone: 'Premium',
-                direction: 'BUY',
-                color: 'green',
-                bgColor: 'bg-green-50',
-                borderColor: 'border-green-600',
-                levels: '59-71-100',
-                steps: [
-                    '1. Price creates BR between 59-71',
-                    '2. Short Term High Raided + MSS',
-                    '3. Retrace into the BR + Entry',
-                    '4. SL below swing low, Target 100'
-                ],
-                path: [
-                    { x: 10, y: 65 }, { x: 20, y: 59 }, { x: 30, y: 62 }, { x: 40, y: 71 },
-                    { x: 50, y: 68 }, { x: 60, y: 71 }, { x: 70, y: 85 }, { x: 80, y: 97 }
-                ],
-                entryIdx: 5,
-                targetIdx: [7],
-                description: 'Breaker Block reversal. Failed resistance becomes support for bullish continuation.'
-            },
-            5: {
-                name: 'MB Premium Sell',
-                zone: 'Premium',
-                direction: 'SELL',
-                color: 'red',
-                bgColor: 'bg-red-50',
-                borderColor: 'border-red-600',
-                levels: '50-59-41',
-                steps: [
-                    '1. Price consolidates around 50 EQ',
-                    '2. Clear BSL and SSL inside MB',
-                    '3. Sweep OB + Entry inside MB (50-59)',
-                    '4. SL at swing high, Target 41'
-                ],
-                path: [
-                    { x: 10, y: 53 }, { x: 20, y: 50 }, { x: 30, y: 52 }, { x: 40, y: 55 },
-                    { x: 50, y: 59 }, { x: 60, y: 53 }, { x: 70, y: 47 }, { x: 80, y: 41 }
-                ],
-                entryIdx: 4,
-                targetIdx: [7],
-                description: 'Mitigation Block at equilibrium. Sweeps liquidity on both sides before committing.'
-            },
-            6: {
-                name: 'BR Discount Sell',
-                zone: 'Discount',
-                direction: 'SELL',
-                color: 'red',
-                bgColor: 'bg-red-50',
-                borderColor: 'border-red-600',
-                levels: '29-41-0',
-                steps: [
-                    '1. Price creates BR between 41-29',
-                    '2. Short Term Low raided + MSS',
-                    '3. Retrace to BR + Entry',
-                    '4. SL above swing high, Target 0'
-                ],
-                path: [
-                    { x: 10, y: 35 }, { x: 20, y: 41 }, { x: 30, y: 38 }, { x: 40, y: 29 },
-                    { x: 50, y: 32 }, { x: 60, y: 29 }, { x: 70, y: 15 }, { x: 80, y: 3 }
-                ],
-                entryIdx: 5,
-                targetIdx: [7],
-                description: 'Bearish continuation in discount. Breaker becomes resistance for further downside.'
-            },
-            7: {
-                name: 'MB Discount Buy',
-                zone: 'Discount',
-                direction: 'BUY',
-                color: 'green',
-                bgColor: 'bg-green-50',
-                borderColor: 'border-green-600',
-                levels: '50-41-59',
-                steps: [
-                    '1. Price consolidates around 50 EQ',
-                    '2. Clear BSL and SSL inside MB',
-                    '3. Sweep down to 41 (SSL) + Entry',
-                    '4. SL at swing low, Target 59'
-                ],
-                path: [
-                    { x: 10, y: 47 }, { x: 20, y: 50 }, { x: 30, y: 48 }, { x: 40, y: 45 },
-                    { x: 50, y: 41 }, { x: 60, y: 47 }, { x: 70, y: 53 }, { x: 80, y: 59 }
-                ],
-                entryIdx: 4,
-                targetIdx: [7],
-                description: 'Mitigation Block buy from discount. Sweeps liquidity below, then reverses up.'
-            },
-            8: {
-                name: 'FVG Discount Buy',
-                zone: 'Discount',
-                direction: 'BUY',
-                color: 'green',
-                bgColor: 'bg-green-50',
-                borderColor: 'border-green-600',
-                levels: '0-11-17-41-50',
-                steps: [
-                    '1. Price creates OB into 0 (OB 3-11)',
-                    '2. Rally out of OB/FV + MSS + Prop Block',
-                    '3. Retrace to FV, break Prop Block',
-                    '4. Entry on breakout, SL below',
-                    '5. Target 41'
-                ],
-                path: [
-                    { x: 10, y: 5 }, { x: 20, y: 3 }, { x: 30, y: 11 }, { x: 40, y: 17 },
-                    { x: 50, y: 14 }, { x: 60, y: 17 }, { x: 70, y: 29 }, { x: 80, y: 41 }
-                ],
-                entryIdx: 5,
-                targetIdx: [7],
-                description: 'Fair Value Gap at extreme low. Fill gap, consolidate, then explosive move up.'
-            },
-            9: {
-                name: 'OB Discount Buy',
-                zone: 'Discount',
-                direction: 'BUY',
-                color: 'green',
-                bgColor: 'bg-green-50',
-                borderColor: 'border-green-600',
-                levels: '03-11-41-50',
-                steps: [
-                    '1. Price creates OB between 03-11',
-                    '2. Short Term High raided + MSS',
-                    '3. Retrace to OB + Entry',
-                    '4. SL below MT OB, Target 41-50'
-                ],
-                path: [
-                    { x: 10, y: 15 }, { x: 20, y: 11 }, { x: 30, y: 8 }, { x: 40, y: 3 },
-                    { x: 50, y: 7 }, { x: 60, y: 11 }, { x: 70, y: 29 }, { x: 80, y: 41 }
-                ],
-                entryIdx: 5,
-                targetIdx: [7],
-                description: 'Order Block buy from discount. Classic institutional buying zone after structure shift.'
-            },
-            10: {
-                name: 'Stoprun Discount Buy',
-                zone: 'Discount',
-                direction: 'BUY',
-                color: 'green',
-                bgColor: 'bg-green-50',
-                borderColor: 'border-green-600',
-                levels: '-0.11-0-03-29-41',
-                steps: [
-                    '1. Price creates OB between 0.03-97',
-                    '2. Stoprun below low (breaches 0)',
-                    '3. Run through 00 level + MSS',
-                    '4. Retrace into 00 level + Entry',
-                    '5. SL below swing low, Target 29-41'
-                ],
-                path: [
-                    { x: 10, y: 3 }, { x: 20, y: 2 }, { x: 25, y: -2 }, { x: 30, y: 0 },
-                    { x: 40, y: 5 }, { x: 50, y: 15 }, { x: 60, y: 29 }, { x: 70, y: 38 }, { x: 80, y: 41 }
-                ],
-                entryIdx: 3,
-                targetIdx: [6, 8],
-                description: 'Liquidity grab below 0. Spring/shakeout pattern with sharp reversal upward.'
-            }
+            // Standard Models 1-10
+            1: { name: 'OB Premium Sell', group: 'std', direction: 'SELL', color: 'red', bgColor: 'bg-rose-50', borderColor: 'border-rose-500', levels: '97-89-59', steps: ['Price creates OB between 97-89', 'Short Term Low Raided + MSS', 'Retrace into the OB + Entry', 'Target 59-50'], path: [{x:10,y:95}, {x:20,y:97}, {x:30,y:92}, {x:40,y:93}, {x:50,y:89}, {x:60,y:75}, {x:70,y:65}, {x:80,y:59}], entryIdx: 4, targetIdx: [7], description: 'Classic Order Block sell from the Premium Liquidity zone.', stats: { win: '65%', risk: '20p', reward: '60p' } },
+            
+            2: { name: 'Stoprun Premium', group: 'std', direction: 'SELL', color: 'red', bgColor: 'bg-rose-50', borderColor: 'border-rose-500', levels: '1.11-100-71', steps: ['Price spikes above 100% High', 'Rejects aggressively (Stoprun)', 'Breaks structure back under 100', 'Entry on retest of 100'], path: [{x:10,y:97}, {x:20,y:98}, {x:25,y:102}, {x:30,y:100}, {x:40,y:95}, {x:50,y:85}, {x:60,y:71}, {x:80,y:59}], entryIdx: 3, targetIdx: [6,7], description: 'Liquidity grab above the High. A fake-out move to trap breakout traders.', stats: { win: '72%', risk: '15p', reward: '80p' } },
+            
+            3: { name: 'FVG Premium Sell', group: 'std', direction: 'SELL', color: 'red', bgColor: 'bg-rose-50', borderColor: 'border-rose-500', levels: '89-83-59', steps: ['Price creates FVG around 89-83', 'Retrace to fill the Imbalance', 'Consolidation then break', 'Target 50 EQ'], path: [{x:10,y:95}, {x:20,y:89}, {x:30,y:83}, {x:40,y:86}, {x:50,y:83}, {x:60,y:75}, {x:80,y:59}], entryIdx: 4, targetIdx: [6], description: 'Fair Value Gap fill. Waiting for price to rebalance an inefficiency before selling.', stats: { win: '60%', risk: '25p', reward: '50p' } },
+            
+            4: { name: 'BR Premium Buy', group: 'std', direction: 'BUY', color: 'green', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-500', levels: '59-71-100', steps: ['Price breaks resistance at 71', 'Retraces to test 71 as support (Breaker)', 'Entry on bullish candle', 'Target 100'], path: [{x:10,y:65}, {x:20,y:59}, {x:30,y:62}, {x:40,y:71}, {x:50,y:68}, {x:60,y:71}, {x:70,y:85}, {x:80,y:97}], entryIdx: 5, targetIdx: [7], description: 'Breaker Block. Old resistance becomes new support for continuation.', stats: { win: '68%', risk: '20p', reward: '55p' } },
+            
+            5: { name: 'MB Premium Sell', group: 'std', direction: 'SELL', color: 'red', bgColor: 'bg-rose-50', borderColor: 'border-rose-500', levels: '50-59-41', steps: ['Consolidation at EQ (50)', 'Sweep liquidity up to 59', 'Rejection back to center', 'Sell towards 41'], path: [{x:10,y:53}, {x:20,y:50}, {x:30,y:52}, {x:40,y:55}, {x:50,y:59}, {x:60,y:53}, {x:80,y:41}], entryIdx: 4, targetIdx: [6], description: 'Mitigation Block in the chop zone. A trap move at equilibrium.', stats: { win: '55%', risk: '15p', reward: '35p' } },
+            
+            6: { name: 'BR Discount Sell', group: 'std', direction: 'SELL', color: 'red', bgColor: 'bg-rose-50', borderColor: 'border-rose-500', levels: '41-29-0', steps: ['Price breaks support at 29', 'Retraces to test 29 as resistance', 'Rejection candle', 'Target Lows'], path: [{x:10,y:35}, {x:20,y:41}, {x:30,y:38}, {x:40,y:29}, {x:50,y:32}, {x:60,y:29}, {x:80,y:3}], entryIdx: 5, targetIdx: [6], description: 'Bearish Breaker in discount. Continuation setup downwards.', stats: { win: '68%', risk: '20p', reward: '60p' } },
+            
+            7: { name: 'MB Discount Buy', group: 'std', direction: 'BUY', color: 'green', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-500', levels: '50-41-59', steps: ['Consolidation at EQ', 'Sweep liquidity down to 41', 'Reclaim 50 level', 'Target 59'], path: [{x:10,y:47}, {x:20,y:50}, {x:30,y:48}, {x:40,y:45}, {x:50,y:41}, {x:60,y:47}, {x:80,y:59}], entryIdx: 4, targetIdx: [6], description: 'Mitigation Block buy. Sweeping the internal range liquidity before rallying.', stats: { win: '55%', risk: '15p', reward: '35p' } },
+            
+            8: { name: 'FVG Discount Buy', group: 'std', direction: 'BUY', color: 'green', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-500', levels: '0-11-41', steps: ['Price creates FVG out of the lows (11)', 'Retraces to fill the gap', 'Entry on support', 'Target 41'], path: [{x:10,y:5}, {x:20,y:3}, {x:30,y:11}, {x:40,y:17}, {x:50,y:14}, {x:60,y:17}, {x:80,y:41}], entryIdx: 5, targetIdx: [6], description: 'Discount Fair Value Gap. High probability reversal from the lows.', stats: { win: '62%', risk: '25p', reward: '65p' } },
+            
+            9: { name: 'OB Discount Buy', group: 'std', direction: 'BUY', color: 'green', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-500', levels: '03-11-41', steps: ['Price taps 3-11% zone', 'Creates bullish Order Block', 'Retraces to OB', 'Target 41-50'], path: [{x:10,y:15}, {x:20,y:11}, {x:30,y:8}, {x:40,y:3}, {x:50,y:7}, {x:60,y:11}, {x:80,y:41}], entryIdx: 5, targetIdx: [6], description: 'Classic Order Block buy from the Discount Liquidity zone.', stats: { win: '65%', risk: '20p', reward: '70p' } },
+            
+            10: { name: 'Stoprun Discount', group: 'std', direction: 'BUY', color: 'green', bgColor: 'bg-emerald-50', borderColor: 'border-emerald-500', levels: '-0.11-29', steps: ['Price dives below 0.00 Low', 'Rejects aggressively (Spring)', 'Reclaims the 0.00 level', 'Target 29'], path: [{x:10,y:3}, {x:20,y:2}, {x:25,y:-2}, {x:30,y:0}, {x:40,y:5}, {x:50,y:15}, {x:60,y:29}, {x:80,y:41}], entryIdx: 3, targetIdx: [6], description: 'The Spring pattern. A liquidity trap below the lows to fuel the move up.', stats: { win: '75%', risk: '15p', reward: '90p' } },
+
+            // Advanced Models 11-14 (Custom Colors)
+            11: { name: 'Liquidity Trap', group: 'adv', direction: 'SELL', color: 'orange', bgColor: 'bg-orange-50', borderColor: 'border-orange-500', levels: '97-89-53', steps: ['Price hovers/wicks at 97%', 'Retail thinks breakout is coming', 'Aggressive break below 89%', 'Enter Short on the breakdown'], path: [{x:10,y:96}, {x:20,y:98}, {x:30,y:97}, {x:40,y:96}, {x:50,y:89}, {x:60,y:71}, {x:70,y:53}, {x:80,y:47}], entryIdx: 4, targetIdx: [6, 7], description: 'Consolidation at 97% traps retail traders. When it breaks 89%, their stops get taken!', stats: { win: '85%', risk: '30p', reward: '80p' } },
+            
+            12: { name: 'Flow Continuation', group: 'adv', direction: 'BUY', color: 'blue', bgColor: 'bg-blue-50', borderColor: 'border-blue-500', levels: '29-47-71', steps: ['Price breaks above 29% flow', 'WAIT! Do not buy breakout', 'Price retraces back to 29%', 'Enter Long on the retest'], path: [{x:10,y:17}, {x:20,y:25}, {x:30,y:35}, {x:40,y:29}, {x:50,y:32}, {x:60,y:47}, {x:80,y:71}], entryIdx: 3, targetIdx: [5, 6], description: 'NEVER buy the initial breakout! Always wait for the retrace to the flow gate (29%).', stats: { win: '78%', risk: '35p', reward: '100p' } },
+            
+            13: { name: 'Flow Rejection', group: 'adv', direction: 'SELL', color: 'red', bgColor: 'bg-rose-50', borderColor: 'border-rose-500', levels: '71-53-29', steps: ['Price touches 71% Flow Gate', 'HARD REJECTION creates a gap', 'Price retraces slightly to fill gap', 'Enter Short for rejection'], path: [{x:10,y:53}, {x:20,y:60}, {x:30,y:71}, {x:40,y:65}, {x:50,y:68}, {x:60,y:53}, {x:80,y:29}], entryIdx: 4, targetIdx: [6], description: 'Gaps created by hard rejections act like magnets. Price retraces to fill them before dropping.', stats: { win: '70%', risk: '40p', reward: '95p' } },
+            
+            14: { name: 'Rebalance Scalp', group: 'adv', direction: 'RANGE', color: 'purple', bgColor: 'bg-purple-50', borderColor: 'border-purple-500', levels: '47-53', steps: ['Chop between 47-53% (middle)', 'Liquidity builds in center', 'Price extends to 41% or 59%', 'Fade the move (Mean Reversion)'], path: [{x:10,y:50}, {x:20,y:48}, {x:30,y:52}, {x:40,y:49}, {x:50,y:41}, {x:60,y:45}, {x:80,y:59}], entryIdx: 4, targetIdx: [6], description: 'Best for choppy, sideways markets. Quick in and out trades with tight risk.', stats: { win: '65%', risk: '15p', reward: '40p' } }
         };
 
-        function renderModelSelector() {
-            const container = document.getElementById('modelSelector');
-            container.innerHTML = '';
+        function renderModelSelectors() {
+            const stdContainer = document.getElementById('standardSelector');
+            const advContainer = document.getElementById('advancedSelector');
+            stdContainer.innerHTML = '';
+            advContainer.innerHTML = '';
             
             Object.keys(models).forEach(key => {
                 const model = models[key];
                 const isActive = activeModel === parseInt(key);
                 const btn = document.createElement('button');
-                btn.className = `p-3 rounded-lg font-semibold text-sm transition-all ${
-                    isActive
-                        ? `${model.borderColor} border-4 ${model.bgColor} scale-105 shadow-lg`
-                        : 'border-2 border-gray-300 bg-gray-50 hover:border-gray-400'
-                }`;
-                btn.onclick = () => {
-                    activeModel = parseInt(key);
-                    render();
-                };
+                
+                // Color Logic for Tags
+                let dirColor = 'bg-slate-100 text-slate-500';
+                if(model.direction === 'BUY') dirColor = 'bg-green-100 text-green-700';
+                if(model.direction === 'SELL') dirColor = 'bg-red-100 text-red-700';
+                if(model.direction === 'RANGE') dirColor = 'bg-purple-100 text-purple-700';
+
+                // Base Classes
+                let classes = `model-btn text-left p-3 rounded-xl border-2 transition-all relative overflow-hidden group `;
+                
+                // Active State Styling
+                if (isActive) {
+                    classes += `${model.borderColor} ${model.bgColor} shadow-md scale-[1.02] ring-2 ring-offset-2 ring-blue-100`;
+                } else {
+                    classes += `border-slate-100 bg-white hover:border-slate-300 hover:shadow-sm`;
+                }
+
+                btn.className = classes;
+                btn.onclick = () => { activeModel = parseInt(key); render(); };
+
+                // Inner HTML
                 btn.innerHTML = `
-                    <div class="text-xs text-gray-600">Model ${key}</div>
-                    <div class="font-bold">${model.name.split(' ')[0]}</div>
-                    <div class="text-xs ${model.direction === 'BUY' ? 'text-green-600' : 'text-red-600'}">
-                        ${model.direction}
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] font-black ${isActive ? 'text-slate-700' : 'text-slate-400'}">#${key}</span>
+                        <span class="text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wide ${dirColor}">${model.direction}</span>
                     </div>
+                    <div class="font-bold text-xs text-slate-800 leading-tight group-hover:text-blue-600 transition-colors">${model.name}</div>
                 `;
-                container.appendChild(btn);
+
+                // Append to correct container
+                if (model.group === 'std') stdContainer.appendChild(btn);
+                else advContainer.appendChild(btn);
             });
         }
 
         function renderChart() {
             const currentModel = models[activeModel];
             const container = document.getElementById('chartContainer');
-            container.className = `${currentModel.bgColor} ${currentModel.borderColor} border-4 rounded-xl p-6 mb-6`;
             
+            // Dynamic Container Colors
+            container.className = `rounded-2xl p-6 border-4 relative shadow-inner min-h-[600px] transition-all duration-500 ${currentModel.bgColor} ${currentModel.borderColor}`;
+
+            // 1. Levels
             let levelsHTML = '';
             levels.forEach(level => {
-                let colorClass = 'border-gray-400 text-gray-600';
-                if (level.zone === 'premium') colorClass = 'border-green-500 text-green-700';
-                if (level.zone === 'discount') colorClass = 'border-green-500 text-green-700';
-                if (level.zone === 'flow') colorClass = 'border-blue-500 text-blue-700';
-                if (level.zone === 'rebalance') colorClass = 'border-red-500 text-red-700';
-                if (level.zone === 'equilibrium') colorClass = 'border-yellow-500 text-yellow-700';
+                let colorClass = 'border-slate-300 text-slate-400'; // Default
+                if (level.color === 'green') colorClass = 'border-green-500 text-green-700';
+                if (level.color === 'blue') colorClass = 'border-blue-500 text-blue-700';
+                if (level.color === 'red') colorClass = 'border-red-500 text-red-700';
+                if (level.color === 'orange') colorClass = 'border-orange-400 text-orange-600';
+                if (level.color === 'black') colorClass = 'border-slate-900 text-slate-900';
 
-                const isThick = level.pct === 100 || level.pct === 0 || level.pct === 50 || level.pct === 71 || level.pct === 29;
-                
                 levelsHTML += `
-                    <div class="absolute left-0 right-0 border-t-2 ${isThick ? 'border-solid' : 'border-dashed'} ${colorClass}" 
+                    <div class="absolute left-0 right-0 border-t ${level.thick ? 'border-2' : 'border-dashed'} ${colorClass} opacity-60" 
                          style="bottom: ${level.pct}%">
-                        <span class="absolute left-2 -top-3 bg-white px-1 text-xs font-bold">
+                        <span class="absolute right-0 -translate-y-1/2 bg-white/60 px-1 rounded text-[10px] font-bold shadow-sm">
                             ${level.label}
                         </span>
                     </div>
                 `;
             });
 
+            // 2. Path Lines
             let svgLines = '';
             currentModel.path.forEach((point, idx) => {
                 if (idx === currentModel.path.length - 1) return;
@@ -396,53 +236,40 @@
                     <line x1="${point.x}%" y1="${100 - point.y}%" 
                           x2="${next.x}%" y2="${100 - next.y}%"
                           stroke="${isUp ? '#10b981' : '#ef4444'}" 
-                          stroke-width="3" opacity="0.8"/>
+                          stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
                 `;
             });
 
+            // 3. Points
             let svgPoints = '';
             currentModel.path.forEach((point, idx) => {
                 let label = '';
-                let color = '#6b7280';
-                let size = 6;
+                let color = '#cbd5e1'; // slate-300
+                let radius = 4;
+                let stroke = 'white';
 
                 if (idx === currentModel.entryIdx) {
-                    label = 'ENTRY';
-                    color = '#22c55e';
-                    size = 10;
+                    label = 'ENTRY'; color = '#22c55e'; radius = 8; stroke = '#15803d';
                 }
                 if (currentModel.targetIdx && currentModel.targetIdx.includes(idx)) {
-                    label = 'T' + (currentModel.targetIdx.indexOf(idx) + 1);
-                    color = '#f59e0b';
-                    size = 10;
+                    label = 'TP'; color = '#f59e0b'; radius = 8; stroke = '#b45309';
                 }
 
                 svgPoints += `
-                    <circle cx="${point.x}%" cy="${100 - point.y}%" r="${size}" 
-                            fill="${color}" stroke="white" stroke-width="2"/>
-                    ${label ? `<text x="${point.x}%" y="${100 - point.y - 4}%" 
-                                     text-anchor="middle" font-size="10" font-weight="bold" fill="${color}">
-                                ${label}
-                              </text>` : ''}
+                    <g class="hover:scale-110 transition-transform cursor-pointer group">
+                        <circle cx="${point.x}%" cy="${100 - point.y}%" r="${radius}" 
+                                fill="${color}" stroke="${stroke}" stroke-width="2" class="shadow-sm"/>
+                        ${label ? `<text x="${point.x}%" y="${100 - point.y - 12}%" 
+                                         text-anchor="middle" font-size="12" font-weight="900" fill="#0f172a" 
+                                         style="text-shadow: 0 2px 4px white;">${label}</text>` : ''}
+                    </g>
                 `;
             });
 
             container.innerHTML = `
-                <div class="text-center mb-4">
-                    <h2 class="text-2xl font-bold">
-                        MODEL ${activeModel}: ${currentModel.name}
-                    </h2>
-                    <div class="flex justify-center gap-4 mt-2 text-sm">
-                        <span class="font-semibold">Zone: ${currentModel.zone}</span>
-                        <span class="font-bold ${currentModel.direction === 'BUY' ? 'text-green-600' : 'text-red-600'}">
-                            ${currentModel.direction}
-                        </span>
-                        <span>Levels: ${currentModel.levels}</span>
-                    </div>
-                </div>
-                <div class="bg-white border-4 border-black rounded-lg p-4 relative" style="height: 500px">
+                <div class="absolute inset-4">
                     ${levelsHTML}
-                    <svg class="absolute inset-0 w-full h-full pointer-events-none" style="overflow: visible">
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
                         ${svgLines}
                         ${svgPoints}
                     </svg>
@@ -450,32 +277,45 @@
             `;
         }
 
-        function renderSetupSteps() {
-            const currentModel = models[activeModel];
-            const container = document.getElementById('setupSteps');
-            container.innerHTML = currentModel.steps.map((step, idx) => `
-                <li class="flex gap-3 bg-white p-2 rounded">
-                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">
-                        ${idx + 1}
+        function renderInfo() {
+            const m = models[activeModel];
+            
+            // Text Updates
+            document.getElementById('modelTitle').textContent = m.name;
+            document.getElementById('modelTitle').className = `text-2xl font-black uppercase leading-none mb-1 ${
+                m.direction === 'BUY' ? 'text-green-600' : (m.direction === 'SELL' ? 'text-red-600' : 'text-purple-600')
+            }`;
+            document.getElementById('modelSubtitle').textContent = `${m.direction} SETUP • ${m.color.toUpperCase()} ZONE`;
+            
+            // Stats
+            document.getElementById('statWin').textContent = m.stats.win;
+            document.getElementById('statRisk').textContent = m.stats.risk;
+            document.getElementById('statReward').textContent = m.stats.reward;
+
+            // Description
+            document.getElementById('description').textContent = m.description;
+
+            // Steps
+            const steps = document.getElementById('setupSteps');
+            steps.innerHTML = m.steps.map((step, i) => `
+                <li class="flex items-start gap-3 text-sm text-slate-600 group">
+                    <span class="flex-shrink-0 w-6 h-6 rounded bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-xs group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                        ${i + 1}
                     </span>
-                    <span class="text-sm">${step}</span>
+                    <span class="pt-0.5 font-medium">${step}</span>
                 </li>
             `).join('');
         }
 
-        function renderDescription() {
-            const currentModel = models[activeModel];
-            document.getElementById('description').textContent = currentModel.description;
-        }
-
         function render() {
-            renderModelSelector();
+            renderModelSelectors();
             renderChart();
-            renderSetupSteps();
-            renderDescription();
+            renderInfo();
         }
 
+        // Initialize
         render();
+
     </script>
 </body>
 </html>
